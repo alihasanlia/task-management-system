@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BTreePrinter {
 
     // Color constants
@@ -66,6 +69,78 @@ public class BTreePrinter {
                 printEnhanced(node.children[i], level + 1, i);
             }
         }
+    }
+
+    // Print B-tree by levels with color
+    public void printByLevels(BTreeNode root) {
+        System.out.println(ANSI_BOLD + "\n=== B-Tree (by Levels) ===" + ANSI_RESET);
+        
+        if (root == null) {
+            System.out.println("(Empty Tree)");
+            return;
+        }
+        
+        // Create lists for each level
+        List<List<BTreeNode>> levels = new ArrayList<>();
+        buildLevels(root, 0, levels);
+        
+        // Print each level
+        for (int i = 0; i < levels.size(); i++) {
+            String levelColor = getLevelColor(i);
+            System.out.print(levelColor + "Level " + i + ": " + ANSI_RESET);
+            
+            List<BTreeNode> levelNodes = levels.get(i);
+            for (int j = 0; j < levelNodes.size(); j++) {
+                BTreeNode node = levelNodes.get(j);
+                                
+                // Print node
+                System.out.print(ANSI_BLACK + "[" + ANSI_RESET);
+                for (int k = 0; k < node.n; k++) {
+                    System.out.print(node.keys[k] + ANSI_RESET);
+                    if (k < node.n - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.print(ANSI_BLACK + "]" + ANSI_RESET);
+                
+                // Add separator between nodes (but not after last one)
+                if (j < levelNodes.size() - 1) {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+        
+        System.out.println(ANSI_BOLD + "==========================" + ANSI_RESET + "\n");
+    }
+
+    // Build levels list
+    private void buildLevels(BTreeNode node, int level, List<List<BTreeNode>> levels) {
+        if (node == null) return;
+        
+        // Ensure level list exists
+        if (levels.size() <= level) {
+            levels.add(new ArrayList<>());
+        }
+        
+        // Add current node to its level
+        levels.get(level).add(node);
+        
+        // Add children to next level
+        if (!node.leaf) {
+            for (int i = 0; i <= node.n; i++) {
+                buildLevels(node.children[i], level + 1, levels);
+            }
+        }
+    }
+
+    // Get color for level header
+    private String getLevelColor(int level) {
+        if (level < LEVEL_COLORS.length) {
+            return LEVEL_COLORS[level];
+        }
+        // Cycle colors if more levels than defined colors
+        return LEVEL_COLORS[level % LEVEL_COLORS.length];
     }
 
     // Utility methods for coloring

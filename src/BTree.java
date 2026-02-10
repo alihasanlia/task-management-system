@@ -98,10 +98,12 @@ public class BTree {
 
     // Print tree
     public void printEnhanced() {
-        // To be implemented
+        BTreePrinter printer = new BTreePrinter();
+        printer.printEnhanced(root);
     }
 
     public void printByLevels() {
-        // To be implemented
+        BTreePrinter printer = new BTreePrinter();
+        printer.printByLevels(root);
     }
 }
