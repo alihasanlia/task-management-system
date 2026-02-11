@@ -63,10 +63,7 @@ public class SegmentTree {
 
     // Print
     public void print() {
-        System.out.println("Segment Tree:");
-        for (int i = 1; i < 2 * size; i++) {
-            if (tree[i] != 0)
-                System.out.println("Node " + i + " -> " + tree[i]);
-        }
+        SegmentTreePrinter printer = new SegmentTreePrinter();
+        printer.print(tree, size);
     }
 }
