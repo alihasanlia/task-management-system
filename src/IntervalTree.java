@@ -52,19 +52,8 @@ public class IntervalTree {
 
     // Print
     public void print() {
-        print(root, 0);
+        IntervalTreePrinter printer = new IntervalTreePrinter();
+        printer.print(root);
     }
 
-    private void print(IntervalNode node, int level) {
-        if (node == null) return;
-
-        print(node.left, level + 1);
-        System.out.println(
-            "Level " + level +
-            " [Task " + node.taskId +
-            " (" + node.start + "," + node.end +
-            "), max=" + node.maxEnd + "]"
-        );
-        print(node.right, level + 1);
-    }
 }
