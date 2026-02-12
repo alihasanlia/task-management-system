@@ -116,11 +116,12 @@ public class TaskManager {
         int sum = segmentTree.query(id1, id2);
         System.out.println(sum);
     }
-    
-    public void findOverlaps(int start, int end) {
-        // Implement overlap finding logic here
-    }
+
+    // Print trees
     public void printTrees() {
-        // Implement tree printing logic here
+        bTree.printByLevels();
+        bTree.printEnhanced();
+        segmentTree.print();
+        intervalTree.print();
     }
 }
