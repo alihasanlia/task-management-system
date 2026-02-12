@@ -1,5 +1,11 @@
 public class SegmentTreePrinter {
 
+    // Color constants
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+
     public void print(int[] tree, int size) {
         System.out.println("\n=== Segment Tree ===");
         if (tree[1] == 0) {
@@ -25,9 +31,9 @@ public class SegmentTreePrinter {
         System.out.print(isLeft ? "└── " : "┌── ");
 
         if (start == end) {
-            System.out.println("[" + start + "] = " + tree[node]);
+            System.out.println(ANSI_CYAN + "[" + start + "] = " + tree[node] + ANSI_RESET);
         } else {
-            System.out.println("[" + start + " - " + end + "] sum=" + tree[node]);
+            System.out.println(ANSI_GREEN + "[" + start + " - " + end + "]" + ANSI_YELLOW + " sum=" + tree[node] + ANSI_RESET);
         }
 
         // LEFT subtree (goes DOWN)
