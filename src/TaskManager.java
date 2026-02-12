@@ -103,11 +103,20 @@ public class TaskManager {
             System.out.println(task.toString());
         }
     }
-    
-    public Task search(int start, int end) {
-        // Implement search logic here
-        return null;
+
+    // Search by range
+    public void search(int id1, int id2) {
+
+        if (id1 > id2) {
+            int temp = id1;
+            id1 = id2;
+            id2 = temp;
+        }
+
+        int sum = segmentTree.query(id1, id2);
+        System.out.println(sum);
     }
+    
     public void findOverlaps(int start, int end) {
         // Implement overlap finding logic here
     }
