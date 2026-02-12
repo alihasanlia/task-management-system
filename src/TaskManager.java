@@ -93,10 +93,17 @@ public class TaskManager {
         System.out.println("Task updated");
     }
     
-    public Task search(int id) {
-        // Implement search logic here
-        return null;
+    // Search by id
+    public void search(int id) {
+        Task task = bTree.search(id);
+
+        if (task == null) {
+            System.out.println("Task not found");
+        } else {
+            System.out.println(task.toString());
+        }
     }
+    
     public Task search(int start, int end) {
         // Implement search logic here
         return null;
