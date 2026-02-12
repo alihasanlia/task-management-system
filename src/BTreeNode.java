@@ -29,6 +29,23 @@ public class BTreeNode {
         return children[i].search(key);
     }
 
+    // Update
+    public boolean update(int key, Task newTask) {
+        int i = 0;
+        while (i < n && key > keys[i])
+            i++;
+
+        if (i < n && keys[i] == key) {
+            values[i] = newTask;
+            return true;
+        }
+
+        if (leaf)
+            return false;
+
+        return children[i].update(key, newTask);
+    }
+
     // Delete
     public void delete(int key) {
 

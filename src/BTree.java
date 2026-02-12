@@ -110,6 +110,13 @@ public class BTree {
         }
     }
 
+    // Update
+    public boolean update(Task newTask) {
+        if (root == null)
+            return false;
+        return root.update(newTask.id, newTask);
+    }
+
     // Print tree
     public void printEnhanced() {
         BTreePrinter printer = new BTreePrinter();
