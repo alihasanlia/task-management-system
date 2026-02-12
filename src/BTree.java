@@ -96,6 +96,20 @@ public class BTree {
         parent.n++;
     }
 
+    // Delete
+    public void delete(int id) {
+        if (root == null) return;
+
+        root.delete(id);
+
+        if (root.n == 0) {
+            if (root.leaf)
+                root = null;
+            else
+                root = root.children[0];
+        }
+    }
+
     // Print tree
     public void printEnhanced() {
         BTreePrinter printer = new BTreePrinter();
