@@ -4,7 +4,7 @@ public class TaskManager {
     private SegmentTree segmentTree;
     private IntervalTree intervalTree;
 
-    private static final int MAX_ID = 100000;     // adjust if needed
+    private static final int MAX_ID = 10;         // adjust if needed
 
     public TaskManager() {
         bTree = new BTree(3);                  // B-Tree degree
@@ -100,7 +100,7 @@ public class TaskManager {
         if (task == null) {
             System.out.println("Task not found");
         } else {
-            System.out.println(task.toString());
+            task.print();
         }
     }
 
