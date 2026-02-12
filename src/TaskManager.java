@@ -63,9 +63,36 @@ public class TaskManager {
         System.out.println("Task deleted");
     }
 
-    public void update(int id, Task newTask) {
-        // Implement update logic here
+    // Update
+    public void update(int id, int newStart, int newEnd, int newValue) {
+
+        Task oldTask = bTree.search(id);
+        if (oldTask == null) {
+            System.out.println("Task not found");
+            return;
+        }
+
+        // 1. Interval Tree (critical)
+        intervalTree.delete(oldTask.startTime, oldTask.endTime, id);
+
+        if (!intervalTree.insert(newStart, newEnd, id)) {
+            System.out.println("there is a conflict");
+
+            // rollback
+            intervalTree.insert(oldTask.startTime, oldTask.endTime, id);
+            return;
+        }
+
+        // 2. B-Tree (safe in-place update)
+        Task newTask = new Task(id, newStart, newEnd, newValue);
+        bTree.update(newTask);
+
+        // 3. Segment Tree (value only)
+        segmentTree.update(id, newValue);
+
+        System.out.println("Task updated");
     }
+    
     public Task search(int id) {
         // Implement search logic here
         return null;
