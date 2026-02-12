@@ -29,9 +29,9 @@ public class BTreePrinter {
 
     // Alternative: Color each node differently within levels
     public void printEnhanced(BTreeNode root) {
-        System.out.println("\n" + ANSI_RESET + "=== B-Tree Visualization ===");
+        System.out.println("\n" + ANSI_BOLD + "=== B-Tree Visualization ===" + ANSI_RESET);
         printEnhanced(root, 0, 0);
-        System.out.println("===========================\n");
+        System.out.println(ANSI_BOLD + "============================\n" + ANSI_RESET);
     }
 
     private void printEnhanced(BTreeNode node, int level, int siblingIndex) {

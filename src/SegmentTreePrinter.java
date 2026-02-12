@@ -5,15 +5,16 @@ public class SegmentTreePrinter {
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_BOLD = "\u001B[1m";
 
     public void print(int[] tree, int size) {
-        System.out.println("\n=== Segment Tree ===");
+        System.out.println(ANSI_BOLD + "\n=== Segment Tree ===" + ANSI_RESET);
         if (tree[1] == 0) {
             System.out.println("(Empty Tree)");
         } else {
             printHelper(tree, 1, 0, size - 1, "", false);
         }
-        System.out.println("====================\n");
+        System.out.println(ANSI_BOLD + "====================\n" + ANSI_RESET);
     }
 
     private void printHelper(int[] tree, int node, int start, int end, String indent, boolean isLeft) {

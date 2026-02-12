@@ -3,9 +3,10 @@ public class IntervalTreePrinter {
     private static final String ANSI_RED   = "\u001B[31m";
     private static final String ANSI_BLACK = "\u001B[30m";
     private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BOLD  = "\u001B[1m";
 
     public void print(IntervalNode root, IntervalNode nil) {
-        System.out.println("\n" + "=== Interval Tree (RB) ===" + ANSI_RESET);
+        System.out.println("\n" + ANSI_RESET + ANSI_BOLD + "=== Interval Tree (RB) ===" + ANSI_RESET);
         if (root == nil) {
             System.out.println("(Empty Tree)");
         } else {
@@ -21,7 +22,7 @@ public class IntervalTreePrinter {
             
             printTreeHelper(root.left, nil, "    ", true);
         }
-        System.out.println("==========================\n");
+        System.out.println(ANSI_BOLD + "==========================\n" + ANSI_RESET);
     }
 
     private void printTreeHelper(IntervalNode node, IntervalNode nil, String indent, boolean isLeft) {
