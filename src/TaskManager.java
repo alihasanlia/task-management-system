@@ -42,9 +42,27 @@ public class TaskManager {
         System.out.println("Task inserted");
     }
 
+    // Delete
     public void delete(int id) {
-        // Implement deletion logic here
+
+        Task task = bTree.search(id);
+        if (task == null) {
+            System.out.println("Task not found");
+            return;
+        }
+
+        // 1. remove from interval tree
+        intervalTree.delete(task.startTime, task.endTime, id);
+
+        // 2. remove from B-Tree
+        bTree.delete(id);
+
+        // 3. update segment tree
+        segmentTree.update(id, 0);
+
+        System.out.println("Task deleted");
     }
+
     public void update(int id, Task newTask) {
         // Implement update logic here
     }
